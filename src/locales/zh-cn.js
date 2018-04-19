@@ -1,6 +1,8 @@
 // Based on https://github.com/wenzhixin/vue-auto-form/blob/develop/src/locales/zh-cn.js
 
 export default {
+    latitude : '纬度',
+    longitude : '经度',
     dateFormat : 'YYYY/MM/DD',
     datetimeFormat : 'YYYY/MM/DD, HH:mm',
     elementUiDateFormat : 'yyyy/MM/dd',

@@ -1,6 +1,8 @@
 // Based on https://github.com/wenzhixin/vue-auto-form/blob/develop/src/locales/en-us.js
 
 export default {
+    latitude : 'Latitude',
+    longitude : 'Longitude',
     dateFormat : 'MM/DD/YYYY',
     datetimeFormat : 'MM/DD/YYYY, HH:mm',
     elementUiDateFormat : 'MM/dd/yyyy',

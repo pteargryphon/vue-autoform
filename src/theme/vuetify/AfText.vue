@@ -65,7 +65,7 @@
                     items.push( (v) => v.length >= this.schema.min || Locale.format(messages.minCount, this.schema.min) )
                 }
                 if(this.schema.regEx) {
-                    items.push( (v) => this.schema.regEx.test(v) || Locale.format(messages.notAllowed, this.schema.v) )
+                    items.push( (v) => this.schema.regEx.test(v) || Locale.format(messages.notAllowed, v) )
                 }
                 return items
             }

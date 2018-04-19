@@ -48,6 +48,9 @@
                 }
                 let name = '';
                 switch (this.schema.type) {
+                    case 'geojson':
+                        name = 'AfGeoPoint';
+                        break;
                     case 'object':
                         if(this.schema.multiple) {
                             console.log("multiple")

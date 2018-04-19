@@ -1,8 +1,8 @@
 {
   "name": "@norx85/vue-autoform",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "description": "A vue library to build automaticaly forms from a data schema",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "dev": "webpack --mode development",
     "build": "webpack --mode production --config webpack.prod.js",

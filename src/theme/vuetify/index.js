@@ -9,5 +9,6 @@ export default {
     AfSelect : () => import('./AfSelect.vue'),
     AfCheckbox : () => import('./AfCheckbox.vue'),
     AfObjectGroup : () => import('./AfObjectGroup'),
-    AfMultiObjectGroup : () => import('./AfMultiObjectGroup')
+    AfMultiObjectGroup : () => import('./AfMultiObjectGroup'),
+    AfGeoPoint : () => import('./AfGeoPoint')
 }

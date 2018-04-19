@@ -1,4 +1,6 @@
 export default {
+    latitude : 'Latitudine',
+    longitude : 'Longitudine',
     dateFormat : 'DD/MM/YYYY',
     datetimeFormat : 'DD/MM/YYYY, HH:mm',
     elementUiDateFormat : 'dd/MM/yyyy',

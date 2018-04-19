@@ -122,7 +122,7 @@ Event | Description
 Property | Type | Possible values | Default | Description
 --- | --- | --- | --- | ---
 **name** | *String* | - | - | Name of the field in submitted data
-**type** | *String* | string, number, boolean, date, datetime, time, object | - | Data type of the field
+**type** | *String* | string, number, boolean, date, datetime, time, object, geojson | - | Data type of the field
 **inputType** | *String* | html types in text field, other values are: radio, select, checkbox | - | Determines the type of input rendered
 **multiple** | *Boolean* | `true`, `false` | `false` | If `true` the field contains an array of the selected data type (if possible)
 **defaultValue** | *Any* | - | - | A default value for the field, must be in the corresponding data type
@@ -143,6 +143,11 @@ Property | Type | Possible values | Default | Description
 
 ## Code Example
 [source](https://github.com/norx85/vue-autoform/tree/master/example)
+
+## Changelog
+####v0.2.2
+* GeoJSON point field, use `geojson` as type in schema for this field
+* fixed a bug of the text field in vuetify theme
 
 ## Roadmap to v1
 * GeoJSON fields

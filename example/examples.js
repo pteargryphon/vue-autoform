@@ -95,6 +95,18 @@ const examples = [
         }]
     },
     {
+        title: 'GeoJson Point',
+        schema: [{
+            name : 'location',
+            type: 'geojson',
+            label: 'Your Position',
+            defaultValue: {
+                type : 'Point',
+                coordinates : [18.172896, 40.353201]
+            }
+        }]
+    },
+    {
         title: 'Text with regEx validation',
         schema: [
             {
