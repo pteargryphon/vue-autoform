@@ -1,8 +1,7 @@
 <template>
-    <div>
-        <label style="margin-right: 10px">{{label}}</label>
+    <el-form-item :label="label" :required="required" :prop="schema.name">
         <el-radio v-for="(item, index) in items" :key="index" v-model="model" :label="item.value" @change="onInput">{{item.text}}</el-radio>
-    </div>
+    </el-form-item>
 </template>
 
 <script>
@@ -29,6 +28,10 @@
             locale: {
                 type: String,
                 default : 'en-us'
+            },
+            required : {
+                type: Boolean,
+                default: false
             }
         },
         computed: {

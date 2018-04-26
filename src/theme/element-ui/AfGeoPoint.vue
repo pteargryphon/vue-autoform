@@ -1,19 +1,21 @@
 <template>
-    <el-row>
-        <el-col :xs="24" :md="12">
-            <label>{{longitudeLabel}}</label>
-            <el-input-number v-model="num1" @change="onInput" :min="-85.051128" :max="85.051128" :step="0.000001" controls-position="right"></el-input-number>
-        </el-col>
-        <el-col :xs="24" :md="12">
-            <label>{{latitudeLabel}}</label>
-            <el-input-number v-model="num2" @change="onInput" :min="-180" :max="180" :step="0.000001"  controls-position="right"></el-input-number>
-        </el-col>
-    </el-row>
+    <el-form-item :label="label" :required="required" :prop="schema.name">
+        <el-row>
+            <el-col :xs="24" :md="12">
+                <el-form-item :label="longitudeLabel" :required="required">
+                    <el-input-number v-model="num1" @change="onInput" :min="-85.051128" :max="85.051128" :step="0.000001" controls-position="right"></el-input-number>
+                </el-form-item>
+            </el-col>
+            <el-col :xs="24" :md="12">
+                <el-form-item :label="latitudeLabel" :required="required">
+                    <el-input-number v-model="num2" @change="onInput" :min="-180" :max="180" :step="0.000001"  controls-position="right"></el-input-number>
+                </el-form-item>
+            </el-col>
+        </el-row>
+    </el-form-item>
 </template>
 
 <script>
-    import _ from 'lodash';
-    import moment from 'moment';
     import Locale from '../../locales/index'
     export default {
         data() {
@@ -45,6 +47,10 @@
             locale: {
                 type: String,
                 default : 'en-us'
+            },
+            required : {
+                type: Boolean,
+                default: false
             }
         },
         computed: {

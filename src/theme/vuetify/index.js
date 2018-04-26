@@ -1,4 +1,5 @@
 export default {
+    AfThemedForm : () => import('./AfThemedForm.vue'),
     AfText : () => import('./AfText.vue'),
     AfNumber : () => import('./AfNumber.vue'),
     AfDate : () => import('./AfDate.vue'),

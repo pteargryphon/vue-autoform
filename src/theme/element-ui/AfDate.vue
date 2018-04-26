@@ -1,6 +1,5 @@
 <template>
-    <div>
-        <label>{{label}}</label>
+    <el-form-item :label="label" :required="required" :prop="schema.name">
         <el-date-picker
                 clearable
                 @change="onInput"
@@ -9,7 +8,7 @@
                 :format="dateFormat"
                 :picker-options="pickerOptions">
         </el-date-picker>
-    </div>
+    </el-form-item>
 
 </template>
 
@@ -40,6 +39,10 @@
             locale: {
                 type: String,
                 default : 'en-us'
+            },
+            required : {
+                type: Boolean,
+                default: false
             }
         },
         computed: {

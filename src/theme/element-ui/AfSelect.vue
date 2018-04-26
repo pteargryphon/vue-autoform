@@ -1,6 +1,5 @@
 <template>
-    <div>
-        <label>{{label}}</label>
+    <el-form-item :label="label" :required="required" :prop="schema.name">
         <el-select v-model="model" :multiple="multiple" value-key="value" clearable @change="onInput">
             <el-option
                     v-for="(item, index) in items"
@@ -9,7 +8,7 @@
                     :value="item.value">
             </el-option>
         </el-select>
-    </div>
+    </el-form-item>
 </template>
 
 <script>
@@ -36,6 +35,10 @@
             locale: {
                 type: String,
                 default : 'en-us'
+            },
+            required : {
+                type: Boolean,
+                default: false
             }
         },
         computed: {

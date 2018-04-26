@@ -1,21 +1,20 @@
 <template>
-    <div>
-        <label>{{label}}</label>
+    <el-form-item :label="label" :required="required" :prop="schema.name">
         <el-input
-            :type="inputType"
-            :rows="rows"
-            :minlength="schema.min"
-            :maxlength="schema.max"
-            v-model="model"
-            @change="onInput">
-        <template v-if="schema.prefix" slot="prepend">
-            <span>{{schema.prefix}}</span>
-        </template>
-        <template v-if="schema.suffix" slot="append">
-            <span>{{schema.suffix}}</span>
-        </template>
-    </el-input>
-    </div>
+                :type="inputType"
+                :rows="rows"
+                :minlength="schema.min"
+                :maxlength="schema.max"
+                v-model="model"
+                @change="onInput">
+            <template v-if="schema.prefix" slot="prepend">
+                <span>{{schema.prefix}}</span>
+            </template>
+            <template v-if="schema.suffix" slot="append">
+                <span>{{schema.suffix}}</span>
+            </template>
+        </el-input>
+    </el-form-item>
 
 </template>
 
@@ -42,6 +41,10 @@
             locale: {
                 type: String,
                 default : 'en-us'
+            },
+            required : {
+                type: Boolean,
+                default: false
             }
         },
         computed: {

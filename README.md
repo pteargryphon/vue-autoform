@@ -131,6 +131,7 @@ Property | Type | Possible values | Default | Description
 **step** | *Number* | > 0 | 1 | The step of a numeric field
 **rows** | *Number* | >= 1 | 1 | In a text field determines if is a text area and the number of rows
 **regEx** | *RegEx* | - | - | Used to validate a text field
+**required** | *RegEx* | - | - | Set field as required in form validation
 **prefix** | *String* | - | - | Add a prefix text where possible
 **suffix** | *String* | - | - | Add a prefix text where possible
 **options** | [*String*], [*Number*], [*Object*] | - | - | Array of options for a multiple type field
@@ -145,6 +146,11 @@ Property | Type | Possible values | Default | Description
 [source](https://github.com/norx85/vue-autoform/tree/master/example)
 
 ## Changelog
+####v0.3.0
+* themed forms `v-form` and `el-form` with validation
+* rescripted element-ui fields with `el-form-item`
+* new `required` prop
+
 ####v0.2.2
 * GeoJSON point field, use `geojson` as type in schema for this field
 * fixed a bug of the text field in vuetify theme

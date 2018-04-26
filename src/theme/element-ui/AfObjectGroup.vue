@@ -54,6 +54,10 @@
             schema: {
                 type: Object,
                 required: true
+            },
+            required : {
+                type: Boolean,
+                default: false
             }
         },
         computed: {

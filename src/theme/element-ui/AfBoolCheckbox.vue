@@ -1,8 +1,11 @@
 <template>
-    <el-checkbox v-model="model" @change="onInput">{{label}}</el-checkbox>
+    <el-form-item :label="label" :required="required" :prop="schema.name">
+        <el-checkbox v-model="model" @change="onInput">{{currentValueLabel}}</el-checkbox>
+    </el-form-item>
 </template>
 
 <script>
+    import Locale from '../../locales'
     export default {
         data() {
             return {
@@ -25,9 +28,22 @@
             locale: {
                 type: String,
                 default : 'en-us'
+            },
+            required : {
+                type: Boolean,
+                default: false
             }
         },
         computed: {
+            currentValueLabel() {
+                return this.model ? this.trueLabel : this.falseLabel
+            },
+            trueLabel() {
+                return this.schema.trueLabel || Locale[this.locale].yes;
+            },
+            falseLabel() {
+                return this.schema.falseLabel || Locale[this.locale].no;
+            },
             label() {
                 return this.schema.label || this.schema.name;
             },

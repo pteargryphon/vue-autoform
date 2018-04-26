@@ -1,14 +1,12 @@
 <template>
-    <div>
-        <label>{{label}}</label>
+    <el-form-item :label="label" :required="required" :prop="schema.name">
         <el-checkbox-group v-model="model" :min="this.schema.min" :max="this.schema.max" @change="onInput">
             <el-checkbox
                     v-for="(opt, index) in items"
                     :key="index"
                     :label="opt.value">{{opt.text}}</el-checkbox>
         </el-checkbox-group>
-
-    </div>
+    </el-form-item>
 
 </template>
 
@@ -31,6 +29,10 @@
             locale: {
                 type: String,
                 default : 'en-us'
+            },
+            required : {
+                type: Boolean,
+                default: false
             }
         },
         watch : {

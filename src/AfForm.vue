@@ -1,17 +1,23 @@
 <template>
-    <form ref="form" @submit="onFormSubmit">
+    <component :key="theme" v-model="model" :is="themedForm" >
         <af-field v-for="(sch, index) in schema"
-                    :key="index"
-                    v-model="model[sch.name]"
-                    :schema="sch"
-                    @input="$emit('input', model)"
-                    :theme="theme"
-                    :locale="locale">
+                  :key="index"
+                  v-model="model[sch.name]"
+                  :schema="sch"
+                  @input="$emit('input', model)"
+                  :theme="theme"
+                  :locale="locale">
         </af-field>
-    </form>
+    </component>
+
+
+    <!--<form ref="form" @submit="onFormSubmit">
+
+    </form>-->
 </template>
 
 <script>
+    import Theme from './theme';
     import AfField from './AfField';
     export default {
         name : 'af-form',
@@ -27,7 +33,13 @@
             return {
                 keyIndex : 0,
                 model : this.value,
+                valid : true,
                 errors: {}
+            }
+        },
+        computed : {
+            themedForm() {
+                return Theme[this.theme].AfThemedForm;
             }
         },
         props: {

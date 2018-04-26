@@ -8,8 +8,7 @@
             :step="step">
 
     </el-input-number>-->
-    <div>
-        <label>{{label}}</label>
+    <el-form-item :label="label" :required="required" :prop="schema.name">
         <el-input
                 type="number"
                 :min="min"
@@ -24,7 +23,7 @@
                 {{schema.suffix}}
             </template>
         </el-input>
-    </div>
+    </el-form-item>
 
 
 </template>
@@ -54,6 +53,10 @@
             locale: {
                 type: String,
                 default : 'en-us'
+            },
+            required : {
+                type: Boolean,
+                default: false
             }
         },
         computed: {

@@ -1,15 +1,12 @@
 <template>
-    <div>
-        <label>{{label}}</label>
+    <el-form-item :label="label" :required="required" :prop="schema.name">
         <el-time-picker
                 clearable
                 v-model="modelDate"
                 :picker-options="pickerOptions"
-                format="HH:mm"
-        >
-
+                format="HH:mm">
         </el-time-picker>
-    </div>
+    </el-form-item>
 </template>
 
 <script>
@@ -37,6 +34,10 @@
             locale: {
                 type: String,
                 default : 'en-us'
+            },
+            required : {
+                type: Boolean,
+                default: false
             }
         },
         computed: {
