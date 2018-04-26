@@ -18,7 +18,7 @@ module.exports = {
     resolve: {
         alias: {
             // put this to solve scoped package resolution in node_modules
-            '@': resolve('src')
+            '@': ''
         }
     }
     ...
