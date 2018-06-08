@@ -11,5 +11,6 @@ export default {
     AfCheckbox : () => import('./AfCheckbox.vue'),
     AfObjectGroup : () => import('./AfObjectGroup'),
     AfMultiObjectGroup : () => import('./AfMultiObjectGroup'),
-    AfGeoPoint : () => import('./AfGeoPoint')
+    AfGeoPoint : () => import('./AfGeoPoint'),
+    AfHtml : () => import('./AfHtml')
 }

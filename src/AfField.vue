@@ -123,6 +123,9 @@
                             name = 'AfBoolCheckbox';
                         }
                         break;
+                    case 'html':
+                        name = 'AfHtml';
+                        break;
                 }
                 if(!name) {
                     return null;

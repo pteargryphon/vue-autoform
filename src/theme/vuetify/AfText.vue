@@ -8,6 +8,7 @@
             :counter="counter"
             :suffix="schema.suffix"
             :prefix="schema.prefix"
+            :textarea="rows > 1"
             v-model="model"
             @input="$emit('input', $event)"
     ></v-text-field>

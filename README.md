@@ -122,7 +122,7 @@ Event | Description
 Property | Type | Possible values | Default | Description
 --- | --- | --- | --- | ---
 **name** | *String* | - | - | Name of the field in submitted data
-**type** | *String* | string, number, boolean, date, datetime, time, object, geojson | - | Data type of the field
+**type** | *String* | string, number, boolean, date, datetime, time, object, geojson, html | - | Data type of the field
 **inputType** | *String* | html types in text field, other values are: radio, select, checkbox | - | Determines the type of input rendered
 **multiple** | *Boolean* | `true`, `false` | `false` | If `true` the field contains an array of the selected data type (if possible)
 **defaultValue** | *Any* | - | - | A default value for the field, must be in the corresponding data type
@@ -146,6 +146,9 @@ Property | Type | Possible values | Default | Description
 [source](https://github.com/norx85/vue-autoform/tree/master/example)
 
 ## Changelog
+####v0.4.0
+* added html field (wysiwyg), thanks to [vue-wysiwyg](https://github.com/chmln/vue-wysiwyg)
+
 ####v0.3.0
 * themed forms `v-form` and `el-form` with validation
 * rescripted element-ui fields with `el-form-item`
@@ -166,11 +169,16 @@ Property | Type | Possible values | Default | Description
 
 ## Credits
 This library is inspired by [`wenzhixin vue-auto-form`](https://github.com/wenzhixin/vue-auto-form)
+Thanks to:
+* [Vue.js](https://vuejs.org/)
+* [Vuetify](https://vuetifyjs.com/en/)
+* [Element-UI](http://element.eleme.io/#/en-US)
+* [vue-wysiwyg](https://github.com/chmln/vue-wysiwyg)
 
 ## License
 This library is licensed under the [The MIT License](https://github.com/norx85/vue-autoform/blob/master/LICENSE).
 
-If you like my work you can **Star** this repository or you can buy me a coffe:
+If you like my work you can **Star** this repository or you can buy me a coffee:
 
 **My Bitcoin address**
 

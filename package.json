@@ -1,6 +1,6 @@
 {
   "name": "@norx85/vue-autoform",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "A vue library to build automaticaly forms from a data schema",
   "main": "src/index.js",
   "scripts": {
@@ -42,6 +42,7 @@
     "lodash": "^4.17.5",
     "moment": "^2.22.0",
     "sprintf-js": "^1.1.1",
-    "vue": "^2.5.16"
+    "vue": "^2.5.16",
+    "vue-wysiwyg": "^1.7.2"
   }
 }

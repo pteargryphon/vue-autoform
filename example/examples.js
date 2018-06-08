@@ -42,6 +42,14 @@ const examples = [
         }]
     },
     {
+        title: 'HTML wysiwyg editor ',
+        schema: [{
+            label : 'Description',
+            name : 'description',
+            type: 'html'
+        }]
+    },
+    {
         title: 'Integer number field',
         schema: [
             {
