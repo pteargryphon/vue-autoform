@@ -1,81 +1,35 @@
 <template>
-    <v-menu
-            lazy
-            :close-on-content-click="false"
-            v-model="menu"
-            transition="scale-transition"
-            offset-y
-            :nudge-left="40">
-        <v-text-field
-                slot="activator"
-                :label="label"
-                :value="dateFormatted"
-                prepend-icon="event"
-                readonly
-        ></v-text-field>
-        <v-container>
-            <v-date-picker v-model="dateModel"
-                           :locale="locale" autosave
-                           scrollable
-                           :min="min"
-                           :max="max"
-                           @input="onInput"
-                           reactive
-                           :date-format="formatDate"
-                           :formatted-value.sync="dateFormatted" color="primary">
-            </v-date-picker>
-            <v-time-picker v-model="timeModel" scrollable color="primary"
-                           format="24hr"
-                           @input="onInput">
-            </v-time-picker>
-        </v-container>
+    <v-container>
+        <span class="caption">{{label}}</span>
+        <v-layout row>
+            <v-flex xs6>
+                <v-text-field ref="dateField" type="date" v-model="dateVal" prepend-icon="event" :min="min" :max="max"></v-text-field>
+            </v-flex>
+            <v-flex xs6>
+                <v-text-field ref="timeField" type="time" v-model="timeVal" :min="timeMin" :max="timeMax"  pattern="[0-9]{2}:[0-9]{2}"></v-text-field>
+            </v-flex>
+        </v-layout>
 
-    </v-menu>
+    </v-container>
 </template>
 
 <script>
-    import moment from 'moment'
-    import Locale from '../../locales'
+    import moment from "moment";
+    import Locale from "../../locales";
     export default {
         data() {
             return {
-                menuOpen : false,
-                model : this.value,
-                dateModel : null,
-                timeModel : null,
-            }
+                model: this.value
+            };
         },
-        watch : {
+        watch: {
             value(newVal) {
                 this.model = this.value;
             },
-            dateModel(newVal) {
-                moment.locale(this.momentLocale);
-                let dateMoment = moment(newVal);
-                let modelMoment = moment(this.model);
-                modelMoment.year(dateMoment.year());
-                modelMoment.month(dateMoment.month());
-                modelMoment.date(dateMoment.date());
-                this.model = modelMoment.toJSON();
-                this.$emit('input', this.model)
-            },
-            timeModel(newVal) {
-                moment.locale(this.momentLocale);
-                let spl = newVal.split(":");
 
-                let modelMoment = moment(this.model);
-                if(spl[0] !== 'NaN') {
-                    modelMoment.hour(parseInt(spl[0]));
-                }
-                if(spl[1] !== 'NaN') {
-                    modelMoment.minute(parseInt(spl[1]));
-                }
-                this.model = modelMoment.toJSON();
-                this.$emit('input', this.model)
-            }
         },
         props: {
-            value : {
+            value: {
                 type: String
             },
             schema: {
@@ -84,68 +38,97 @@
             },
             locale: {
                 type: String,
-                default : 'en-us'
+                default: "en-us"
             }
         },
         computed: {
-            menu : {
+            dateVal : {
                 get() {
-                    return this.menuOpen;
+                    return this.model ? moment.parseZone(this.model).format("YYYY-MM-DD") : null;
                 },
                 set(newVal) {
-                    this.menuOpen = newVal;
-
-                    if(this.menuOpen) {
-                        moment.locale(this.momentLocale);
-                        let modelMoment = moment(this.model.substring(0));
-
-                        let dateMoment = moment();
-                        dateMoment.year(modelMoment.year());
-                        dateMoment.month(modelMoment.month());
-                        dateMoment.day(modelMoment.day());
-                        this.dateModel = dateMoment.toJSON();
-
-                        this.timeModel = modelMoment.format('HH:mm');
+                    if(!newVal) {
+                        this.model = null;
+                        this.$emit('input', null);
+                        return;
                     }
+
+                    let date = moment.parseZone(newVal).toISOString();
+                    this.model = date;
+                    this.$emit('input', date);
                 }
             },
-            dateFormatted() {
-                console.log("dateFormatted", this.model);
-                moment.locale(this.momentLocale);
-                let date = moment(this.model);
-                return date.format(Locale[this.locale].datetimeFormat);
+
+            timeVal : {
+                get() {
+                    return this.model ? moment.parseZone(this.model).format("HH:mm") : null;
+                },
+                set(newVal) {
+                    if(!newVal) {
+                        this.model = moment.parseZone(this.model).hour(0).minute(0).toISOString();
+                        this.$emit('input', this.model);
+                        return;
+                    }
+
+                    let spl = newVal.split(":");
+                    if(spl.length !== 2) {
+                        this.model = moment.parseZone(this.model).hour(0).minute(0).toISOString();
+                        this.$emit('input', this.model);
+                        return;
+                    }
+
+                    let date = moment.parseZone(this.model).hour(parseInt(spl[0])).minute(parseInt(spl[1])).toISOString();
+                    this.model = date;
+                    this.$emit('input', date);
+                }
             },
             momentLocale() {
-                return this.locale ? this.locale.substring(0,2) : 'en';
+                return this.locale ? this.locale.substring(0, 2) : "en";
             },
             label() {
                 return this.schema.label || this.schema.name;
             },
             min() {
                 console.log("min", this.schema.min);
-                return this.schema.min || undefined
+                return this.schema.min ? moment.parseZone(this.schema.min).format("YYYY-MM-DD") : undefined;
             },
             max() {
-                return this.schema.max || undefined
+                return this.schema.max ? moment.parseZone(this.schema.max).format("YYYY-MM-DD") : undefined;
+            },
+            timeMin() {
+
+                let current = moment.parseZone(this.model);
+                let min = moment.parseZone(this.schema.min);
+                if(current.year() === min.year() && current.month() === min.month() && current.day() === min.day()) {
+                    return [min.hour(),min.minute()].join(":")
+                }
+                return undefined;//this.schema.min || undefined;
+            },
+            timeMax() {
+                let current = moment.parseZone(this.model);
+                let max = moment.parseZone(this.schema.max);
+                if(current.year() === max.year() && current.month() === max.month() && current.day() === max.day()) {
+                    return [max.hour(),max.minute()].join(":")
+                }
+                return undefined;//this.schema.max || undefined;
             },
             rules() {
-                return []
-            },
-
+                return [];
+            }
         },
         methods: {
-            onInput (val) {
-                this.$emit('input', this.model)
+            onInput(val) {
+                this.$emit("input", this.model);
             },
             formatDate(date) {
-                return new Date(date).toLocaleDateString()
+                return new Date(date).toLocaleDateString();
             }
         },
         beforeMount() {
-            if(!this.value && this.schema.defaultValue) {
+            if (!this.value && this.schema.defaultValue) {
                 this.model = this.schema.defaultValue;
-                this.$emit('input', this.model)
+                this.$emit("input", this.model);
             }
         }
-    }
+    };
 </script>

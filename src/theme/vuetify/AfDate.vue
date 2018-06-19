@@ -1,27 +1,5 @@
 <template>
-    <v-menu
-            lazy
-            :close-on-content-click="false"
-            v-model="menu"
-            transition="scale-transition"
-            offset-y
-            :nudge-left="40">
-        <v-text-field
-                slot="activator"
-                :label="label"
-                v-model="dateFormatted"
-                prepend-icon="event"
-                readonly
-        ></v-text-field>
-        <v-date-picker v-model="model" no-title scrollable :locale="locale" autosave
-                       :min="min"
-                       :max="max"
-                       @input="onInput"
-                       reactive
-                       :date-format="date => new Date(date).toLocaleDateString()"
-                       :formatted-value.sync="dateFormatted">
-        </v-date-picker>
-    </v-menu>
+    <v-text-field ref="dateField" :label="label" type="date" v-model="dateVal" prepend-icon="event" :min="min" :max="max"></v-text-field>
 </template>
 
 <script>
@@ -53,10 +31,21 @@
             }
         },
         computed: {
-            dateFormatted() {
-                moment.locale(this.momentLocale);
-                let date = moment(new Date(this.model));
-                return date.format(Locale[this.locale].dateFormat);
+            dateVal : {
+                get() {
+                    return this.model ? moment(this.model).format("YYYY-MM-DD") : null;
+                },
+                set(newVal) {
+                    if(!newVal) {
+                        this.model = null;
+                        this.$emit('input', null);
+                        return;
+                    }
+
+                    let date = moment.parseZone(newVal).toISOString();
+                    this.model = date;
+                    this.$emit('input', date);
+                }
             },
             momentLocale() {
                 return this.locale ? this.locale.substring(0,2) : 'en';
@@ -65,10 +54,10 @@
                 return this.schema.label || this.schema.name;
             },
             min() {
-                return this.schema.min || undefined
+                return this.schema.min ? moment(this.schema.min).format('YYYY-MM-DD') : undefined
             },
             max() {
-                return this.schema.max || undefined
+                return this.schema.max ? moment(this.schema.max).format('YYYY-MM-DD') : undefined
             },
             rules() {
                 return []

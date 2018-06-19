@@ -1,23 +1,6 @@
 <template>
-    <v-menu
-            lazy
-            :close-on-content-click="false"
-            v-model="menu"
-            transition="scale-transition"
-            offset-y
-            :nudge-left="40">
-        <v-text-field
-                slot="activator"
-                :label="label"
-                :value="model"
-                prepend-icon="access_time"
-                readonly
-        ></v-text-field>
-        <v-time-picker v-model="model" scrollable color="primary"
-                       format="24hr"
-                       @input="onInput">
-        </v-time-picker>
-    </v-menu>
+    <v-text-field ref="timeField" type="time" prepend-icon="access_time" v-model="model" :min="min" :max="max" @input="onInput" pattern="[0-9]{2}:[0-9]{2}"></v-text-field>
+
 </template>
 
 <script>
@@ -51,7 +34,6 @@
                 return this.schema.label || this.schema.name;
             },
             min() {
-                console.log("min", this.schema.min);
                 return this.schema.min || undefined
             },
             max() {

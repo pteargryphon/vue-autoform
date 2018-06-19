@@ -3,7 +3,7 @@
         <label>{{label}}</label>
         <wysiwyg :id="id"
                  v-model="model"
-                 @input="$emit('input', $event)"
+                 @change="$emit('input', model)"
         ></wysiwyg>
     </div>
 
