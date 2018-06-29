@@ -1,6 +1,7 @@
 <template>
     <el-form-item :label="label" :required="required" :prop="schema.name">
         <el-date-picker
+                v-bind="extras"
                 clearable
                 @change="onInput"
                 v-model="model"
@@ -46,6 +47,9 @@
             }
         },
         computed: {
+            extras() {
+                return this.schema.extras ? this.schema.extras : {}
+            },
             label() {
                 return this.schema.label || this.schema.name;
             },

@@ -1,6 +1,8 @@
 <template>
 
     <v-select
+            ref="field"
+            v-bind="extras"
             color="primary"
             @input="onInput"
             :label="label"
@@ -39,9 +41,12 @@
             locale: {
                 type: String,
                 default : 'en-us'
-            }
+            },
         },
         computed: {
+            extras() {
+                return this.schema.extras ? this.schema.extras : {}
+            },
             multiple() {
                 return this.schema.multiple;
             },

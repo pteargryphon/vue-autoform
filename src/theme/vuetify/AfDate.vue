@@ -1,5 +1,5 @@
 <template>
-    <v-text-field ref="dateField" :label="label" type="date" v-model="dateVal" prepend-icon="event" :min="min" :max="max"></v-text-field>
+    <v-text-field ref="dateField" v-bind="extras" :label="label" type="date" v-model="dateVal" prepend-icon="event" :min="min" :max="max"></v-text-field>
 </template>
 
 <script>
@@ -31,6 +31,9 @@
             }
         },
         computed: {
+            extras() {
+                return this.schema.extras ? this.schema.extras : {}
+            },
             dateVal : {
                 get() {
                     return this.model ? moment(this.model).format("YYYY-MM-DD") : null;

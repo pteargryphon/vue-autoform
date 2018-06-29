@@ -1,5 +1,6 @@
 <template>
     <v-text-field
+            v-bind="extras"
             :label="label"
             type="number"
             :rules="rules"
@@ -41,6 +42,9 @@
             }
         },
         computed: {
+            extras() {
+                return this.schema.extras ? this.schema.extras : {}
+            },
             step() {
                 return this.schema.step || 1;
             },

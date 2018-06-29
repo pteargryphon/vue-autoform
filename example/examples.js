@@ -183,7 +183,10 @@ const examples = [
                 name : 'choose',
                 type: 'string',
                 inputType: 'select',
-                options: ['One', 'Two', 'Three'],
+                extras : {
+                    autocomplete : true
+                },
+                options: ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven'],
                 defaultValue: 'One',
                 label: 'Choose a number'
             }

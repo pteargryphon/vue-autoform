@@ -3,12 +3,12 @@
         <el-row>
             <el-col :xs="24" :md="12">
                 <el-form-item :label="longitudeLabel" :required="required">
-                    <el-input-number v-model="num1" @change="onInput" :min="-85.051128" :max="85.051128" :step="0.000001" controls-position="right"></el-input-number>
+                    <el-input-number v-bind="lngExtras" v-model="num1" @change="onInput" :min="-85.051128" :max="85.051128" :step="0.000001" controls-position="right"></el-input-number>
                 </el-form-item>
             </el-col>
             <el-col :xs="24" :md="12">
                 <el-form-item :label="latitudeLabel" :required="required">
-                    <el-input-number v-model="num2" @change="onInput" :min="-180" :max="180" :step="0.000001"  controls-position="right"></el-input-number>
+                    <el-input-number v-bind="latExtras" v-model="num2" @change="onInput" :min="-180" :max="180" :step="0.000001"  controls-position="right"></el-input-number>
                 </el-form-item>
             </el-col>
         </el-row>
@@ -54,6 +54,12 @@
             }
         },
         computed: {
+            latExtras() {
+                return this.schema.latExtras ? this.schema.latExtras : {}
+            },
+            lngExtras() {
+                return this.schema.lngExtras ? this.schema.lngExtras : {}
+            },
             latitudeModel : {
                 get() {
                     return this.model ? this.model.coordinates[1] : null;

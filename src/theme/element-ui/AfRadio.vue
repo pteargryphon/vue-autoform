@@ -1,6 +1,6 @@
 <template>
     <el-form-item :label="label" :required="required" :prop="schema.name">
-        <el-radio v-for="(item, index) in items" :key="index" v-model="model" :label="item.value" @change="onInput">{{item.text}}</el-radio>
+        <el-radio v-bind="extras" v-for="(item, index) in items" :key="index" v-model="model" :label="item.value" @change="onInput">{{item.text}}</el-radio>
     </el-form-item>
 </template>
 
@@ -35,6 +35,9 @@
             }
         },
         computed: {
+            extras() {
+                return this.schema.extras ? this.schema.extras : {}
+            },
             momentLocale() {
                 return this.locale ? this.locale.substring(0,2) : 'en';
             },

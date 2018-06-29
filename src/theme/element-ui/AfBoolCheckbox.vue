@@ -1,6 +1,6 @@
 <template>
     <el-form-item :label="label" :required="required" :prop="schema.name">
-        <el-checkbox v-model="model" @change="onInput">{{currentValueLabel}}</el-checkbox>
+        <el-checkbox v-bind="extras" v-model="model" @change="onInput">{{currentValueLabel}}</el-checkbox>
     </el-form-item>
 </template>
 
@@ -35,6 +35,9 @@
             }
         },
         computed: {
+            extras() {
+                return this.schema.extras ? this.schema.extras : {}
+            },
             currentValueLabel() {
                 return this.model ? this.trueLabel : this.falseLabel
             },

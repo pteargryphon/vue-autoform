@@ -1,8 +1,8 @@
 <template>
     <div>
         <label class="subheading">{{label}}</label>
-        <v-radio-group v-model="model" @change="onInput">
-            <v-radio v-for="(item, index) in items" :key="index" :label="item.text" :value="item.value" color="primary" ></v-radio>
+        <v-radio-group v-bind="groupExtras" v-model="model" @change="onInput">
+            <v-radio v-bind="radioExtras" v-for="(item, index) in items" :key="index" :label="item.text" :value="item.value" color="primary" ></v-radio>
         </v-radio-group>
     </div>
 </template>
@@ -23,6 +23,12 @@
             }
         },
         props: {
+            groupExtras() {
+                return this.schema.groupExtras ? this.schema.groupExtras : {}
+            },
+            radioExtras() {
+                return this.schema.radioExtras ? this.schema.radioExtras : {}
+            },
             value : {},
             schema: {
                 type: Object,

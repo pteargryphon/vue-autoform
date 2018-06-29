@@ -2,6 +2,7 @@
     <div>
         <label class="subheading">{{label}}</label>
         <v-checkbox
+                v-bind="extras"
                 v-for="(opt, index) in items"
                 :key="index"
                 :value="opt.value"
@@ -41,6 +42,9 @@
             }
         },
         computed: {
+            extras() {
+                return this.schema.extras ? this.schema.extras : {}
+            },
             momentLocale() {
                 return this.locale ? this.locale.substring(0,2) : 'en';
             },

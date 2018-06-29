@@ -1,7 +1,8 @@
 <template>
     <el-form-item :label="label" :required="required" :prop="schema.name">
-        <el-checkbox-group v-model="model" :min="this.schema.min" :max="this.schema.max" @change="onInput">
+        <el-checkbox-group v-bind="groupExtras" v-model="model" :min="this.schema.min" :max="this.schema.max" @change="onInput">
             <el-checkbox
+                    v-bind="checkExtras"
                     v-for="(opt, index) in items"
                     :key="index"
                     :label="opt.value">{{opt.text}}</el-checkbox>
@@ -41,6 +42,12 @@
             }
         },
         computed: {
+            groupExtras() {
+                return this.schema.groupExtras ? this.schema.groupExtras : {}
+            },
+            checkExtras() {
+                return this.schema.checkExtras ? this.schema.radioExtras : {}
+            },
             momentLocale() {
                 return this.locale ? this.locale.substring(0,2) : 'en';
             },

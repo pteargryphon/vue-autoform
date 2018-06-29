@@ -139,6 +139,7 @@ Property | Type | Possible values | Default | Description
 **valueProp** | *String* | - | - | When options are objects defines the property to be used as value
 **trueLabel** | *String* | - | based on locale | In a boolean field is the label used for the `true` option
 **falseLabel** | *String* | - | based on locale | In a boolean field is the label used for the `false` option
+**extras** | *Object* | - | - | Extra options for fields based on theme
 **$** | *[Schema]* | - | - | This property is array of `Schema`, required and used only when type is `object`. It defines the form fields of the represented object
 
 
@@ -146,15 +147,15 @@ Property | Type | Possible values | Default | Description
 [source](https://github.com/norx85/vue-autoform/tree/master/example)
 
 ## Changelog
-####v0.4.0
+#### v0.4.0
 * added html field (wysiwyg), thanks to [vue-wysiwyg](https://github.com/chmln/vue-wysiwyg)
 
-####v0.3.0
+#### v0.3.0
 * themed forms `v-form` and `el-form` with validation
 * rescripted element-ui fields with `el-form-item`
 * new `required` prop
 
-####v0.2.2
+#### v0.2.2
 * GeoJSON point field, use `geojson` as type in schema for this field
 * fixed a bug of the text field in vuetify theme
 

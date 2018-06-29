@@ -2,6 +2,7 @@
     <v-layout row wrap>
         <v-flex xs12 md6>
             <v-text-field
+                    v-bind="lngExtras"
                     :label="longitudeLabel"
                     type="number"
                     step="0.00000001"
@@ -13,6 +14,7 @@
         </v-flex>
         <v-flex xs12 md6>
             <v-text-field
+                    v-bind="latExtras"
                     :label="latitudeLabel"
                     type="number"
                     step="0.00000001"
@@ -52,6 +54,12 @@
             }
         },
         computed: {
+            latExtras() {
+                return this.schema.latExtras ? this.schema.latExtras : {}
+            },
+            lngExtras() {
+                return this.schema.lngExtras ? this.schema.lngExtras : {}
+            },
             latitudeModel : {
                 get() {
                     return this.model ? this.model.coordinates[1] : null;

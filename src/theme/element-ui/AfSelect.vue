@@ -1,6 +1,6 @@
 <template>
     <el-form-item :label="label" :required="required" :prop="schema.name">
-        <el-select v-model="model" :multiple="multiple" value-key="value" clearable @change="onInput">
+        <el-select v-bind="extras" v-model="model" :multiple="multiple" value-key="value" clearable @change="onInput">
             <el-option
                     v-for="(item, index) in items"
                     :key="index"
@@ -42,6 +42,9 @@
             }
         },
         computed: {
+            extras() {
+                return this.schema.extras ? this.schema.extras : {}
+            },
             multiple() {
                 return this.schema.multiple;
             },

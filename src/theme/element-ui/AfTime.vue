@@ -1,6 +1,7 @@
 <template>
     <el-form-item :label="label" :required="required" :prop="schema.name">
         <el-time-picker
+                v-bind="extras"
                 clearable
                 v-model="modelDate"
                 :picker-options="pickerOptions"
@@ -41,6 +42,9 @@
             }
         },
         computed: {
+            extras() {
+                return this.schema.extras ? this.schema.extras : {}
+            },
             pickerOptions() {
                 let options = {};
                 if(this.min) {

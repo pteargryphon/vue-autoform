@@ -1,6 +1,7 @@
 <template>
     <el-form-item :label="label" :required="required" :prop="schema.name">
         <el-input
+                v-bind="extras"
                 :type="inputType"
                 :rows="rows"
                 :minlength="schema.min"
@@ -48,6 +49,9 @@
             }
         },
         computed: {
+            extras() {
+                return this.schema.extras ? this.schema.extras : {}
+            },
             label() {
                 return this.schema.label || this.schema.name;
             },

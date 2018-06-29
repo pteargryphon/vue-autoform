@@ -1,5 +1,5 @@
 <template>
-    <v-text-field ref="timeField" type="time" prepend-icon="access_time" v-model="model" :min="min" :max="max" @input="onInput" pattern="[0-9]{2}:[0-9]{2}"></v-text-field>
+    <v-text-field v-bind="extras" ref="timeField" type="time" prepend-icon="access_time" v-model="model" :min="min" :max="max" @input="onInput" pattern="[0-9]{2}:[0-9]{2}"></v-text-field>
 
 </template>
 
@@ -30,6 +30,9 @@
             }
         },
         computed: {
+            extras() {
+                return this.schema.extras ? this.schema.extras : {}
+            },
             label() {
                 return this.schema.label || this.schema.name;
             },

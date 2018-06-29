@@ -3,10 +3,10 @@
         <span class="caption">{{label}}</span>
         <v-layout row>
             <v-flex xs6>
-                <v-text-field ref="dateField" type="date" v-model="dateVal" prepend-icon="event" :min="min" :max="max"></v-text-field>
+                <v-text-field ref="dateField" v-bind="dateExtras" type="date" v-model="dateVal" prepend-icon="event" :min="min" :max="max"></v-text-field>
             </v-flex>
             <v-flex xs6>
-                <v-text-field ref="timeField" type="time" v-model="timeVal" :min="timeMin" :max="timeMax"  pattern="[0-9]{2}:[0-9]{2}"></v-text-field>
+                <v-text-field ref="timeField" v-bind="timeExtras" type="time" v-model="timeVal" :min="timeMin" :max="timeMax"  pattern="[0-9]{2}:[0-9]{2}"></v-text-field>
             </v-flex>
         </v-layout>
 
@@ -42,6 +42,12 @@
             }
         },
         computed: {
+            dateExtras() {
+                return this.schema.dateExtras ? this.schema.dateExtras : {}
+            },
+            timeExtras() {
+                return this.schema.timeExtras ? this.schema.timeExtras : {}
+            },
             dateVal : {
                 get() {
                     return this.model ? moment.parseZone(this.model).format("YYYY-MM-DD") : null;

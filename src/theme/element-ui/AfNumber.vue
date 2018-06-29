@@ -10,6 +10,7 @@
     </el-input-number>-->
     <el-form-item :label="label" :required="required" :prop="schema.name">
         <el-input
+                v-bind="extras"
                 type="number"
                 :min="min"
                 :max="max"
@@ -60,6 +61,9 @@
             }
         },
         computed: {
+            extras() {
+                return this.schema.extras ? this.schema.extras : {}
+            },
             step() {
                 return this.schema.step || 1;
             },

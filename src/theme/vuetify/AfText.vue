@@ -1,5 +1,6 @@
 <template>
     <v-text-field
+            v-bind="extras"
             :label="label"
             :multi-line="multiline"
             :rows="rows"
@@ -41,6 +42,9 @@
             }
         },
         computed: {
+            extras() {
+                return this.schema.extras ? this.schema.extras : {}
+            },
             label() {
                 return this.schema.label || this.schema.name;
             },

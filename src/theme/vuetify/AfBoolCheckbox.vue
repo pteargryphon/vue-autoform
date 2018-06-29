@@ -1,5 +1,6 @@
 <template>
     <v-checkbox
+            v-bind="extras"
             color="primary"
             :label="label"
             v-model="model"
@@ -34,6 +35,9 @@
             }
         },
         computed: {
+            extras() {
+                return this.schema.extras ? this.schema.extras : {}
+            },
             label() {
                 return this.schema.label || this.schema.name;
             },
