@@ -8,11 +8,8 @@ const AutoForm  = {
             hideModules: {
                 headings: true,
                 code : true,
-                orderedList : true,
-                unorderedList : true,
                 image : true,
                 table : true,
-                removeFormat : true,
                 separator : true
             },
         });

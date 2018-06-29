@@ -1,6 +1,6 @@
 {
   "name": "@norx85/vue-autoform",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "A vue library to build automaticaly forms from a data schema",
   "main": "src/index.js",
   "scripts": {
